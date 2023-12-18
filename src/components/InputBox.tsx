@@ -7,12 +7,12 @@ interface InputBoxProps {
 }
 
 const InputBox: React.FC<InputBoxProps> = ({ inputCount, value }) => {
-    const [otp, setOtp] = useState(Array(inputCount).fill(''));
+    const [otp, setOtp] = useState(() => Array.from({ length: inputCount }, (_, index) => (index < value.length ? value[index] : '')));
     const inputRefs = useRef<(TextInput | null)[]>([]);
 
     useEffect(() => {
         const chars = value.split('');
-        setOtp(chars);
+        setOtp(() => Array.from({ length: inputCount }, (_, index) => (index < chars.length ? chars[index] : '')));
     }, [value, inputCount]);
 
     return (
