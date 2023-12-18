@@ -1,11 +1,11 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 
-const Keypad = ({ letters, onPress }: { letters: string[], onPress: (letter: string) => {} }) => {
+const Keypad = ({ letters, onPress }: { letters: string[], onPress: (val: string) => void }) => {
     return (
         <View style={styles.container}>
             {letters.map((letter: string) => {
-                return (<TouchableOpacity onPress={() => onPress(letter)} style={styles.button}>
+                return (<TouchableOpacity key={letter} onPress={() => onPress(letter)} style={styles.button}>
                     <Text style={styles.label}>{letter}</Text>
                 </TouchableOpacity>)
             })}
